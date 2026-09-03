@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sales Analysis | 2983 Siesta View Dr, Kissimmee FL 34744</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300&family=Karla:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0E1D33;
+    --navy-soft:#1B3053;
+    --gold:#B4933F;
+    --gold-pale:#E8DDC2;
+    --paper:#FAF8F4;
+    --card:#FFFFFF;
+    --ink:#1C2530;
+    --muted:#5E6A78;
+    --line:#DDD7CB;
+    --warn:#8C2F1E;
+    --good:#2F6B4F;
+    --water:#2C5F73;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Karla','Helvetica Neue',Arial,sans-serif;
+    font-size:16px;
+    line-height:1.62;
+    font-variant-numeric:tabular-nums;
+  }
+  .wrap{max-width:1000px;margin:0 auto;padding:0 28px 80px;}
+
+  .cover{background:var(--navy);color:#fff;padding:52px 0 44px;}
+  .cover .wrap{padding-bottom:0;}
+  .kicker{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 18px;font-weight:600;}
+  h1{
+    font-family:'Newsreader',Georgia,serif;
+    font-weight:400;
+    font-size:clamp(2.1rem,5vw,3.3rem);
+    line-height:1.08;
+    margin:0 0 6px;
+    letter-spacing:-.01em;
+  }
+  .cover .sub{font-family:'Newsreader',Georgia,serif;font-size:1.25rem;color:#C7D0DD;font-weight:300;margin:0 0 30px;}
+  .specs{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid rgba(255,255,255,.22);}
+  .spec{flex:1 1 120px;padding:16px 20px 16px 0;border-right:1px solid rgba(255,255,255,.14);}
+  .spec:last-child{border-right:none;}
+  .spec dt{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#93A3B8;margin:0 0 4px;}
+  .spec dd{margin:0;font-family:'Newsreader',Georgia,serif;font-size:1.45rem;color:#fff;line-height:1.2;}
+  .spec dd small{font-size:.8rem;color:#B8C3D2;font-family:'Karla',sans-serif;}
+
+  section{margin:56px 0 0;}
+  h2{
+    font-family:'Newsreader',Georgia,serif;
+    font-weight:500;
+    font-size:1.75rem;
+    line-height:1.2;
+    margin:0 0 6px;
+    color:var(--navy);
+  }
+  h2 + .deck{color:var(--muted);margin:0 0 22px;max-width:68ch;}
+  h3{font-family:'Karla',sans-serif;font-size:1rem;font-weight:700;color:var(--navy);margin:28px 0 8px;}
+  p{max-width:72ch;}
+  .rule{height:2px;background:var(--gold);width:52px;margin:0 0 16px;}
+
+  .headline{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-top:4px solid var(--gold);
+    padding:34px 34px 28px;
+    margin-top:44px;
+  }
+  .headline .big{
+    font-family:'Newsreader',Georgia,serif;
+    font-size:clamp(2.6rem,7vw,4.2rem);
+    line-height:1;
+    color:var(--navy);
+    margin:6px 0 4px;
+    letter-spacing:-.02em;
+  }
+  .headline .range{color:var(--muted);font-size:.98rem;margin:0 0 24px;}
+  .hl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:24px;border-top:1px solid var(--line);padding-top:22px;}
+  .hl-grid div p{margin:0;font-size:.94rem;color:var(--muted);}
+  .hl-grid strong{display:block;font-family:'Newsreader',Georgia,serif;font-size:1.55rem;color:var(--navy);font-weight:500;line-height:1.25;}
+
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);}
+  .stat{background:var(--card);padding:20px 18px;}
+  .stat b{display:block;font-family:'Newsreader',Georgia,serif;font-size:1.9rem;font-weight:500;color:var(--navy);line-height:1.1;}
+  .stat span{font-size:.83rem;color:var(--muted);display:block;margin-top:5px;line-height:1.4;}
+
+  .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:18px 0 8px;}
+  table{width:100%;border-collapse:collapse;font-size:.87rem;min-width:660px;background:var(--card);}
+  caption{text-align:left;font-size:.8rem;color:var(--muted);padding:0 0 10px;}
+  th{
+    text-align:left;font-weight:600;font-size:.74rem;letter-spacing:.06em;
+    text-transform:uppercase;color:#fff;background:var(--navy);padding:11px 10px;white-space:nowrap;
+  }
+  td{padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tbody tr:nth-child(even) td{background:#FCFBF8;}
+  td.num,th.num{text-align:right;}
+  tr.subject td{background:var(--gold-pale) !important;font-weight:700;color:var(--navy);}
+  tr.total td{background:#F0EDE5 !important;font-weight:700;border-bottom:none;}
+  td.pos{color:var(--good);}
+  td.neg{color:var(--warn);}
+  .tag{display:inline-block;font-size:.72rem;padding:2px 7px;border-radius:2px;font-weight:600;white-space:nowrap;}
+  .tag.risk{background:#F5E4E0;color:var(--warn);}
+  .tag.watch{background:#F3EBD8;color:#7A5F1B;}
+  .tag.water{background:#DFEAEE;color:var(--water);}
+  .note{font-size:.84rem;color:var(--muted);margin-top:6px;}
+
+  .bars{margin:22px 0 6px;border-top:1px solid var(--line);}
+  .bar-row{display:grid;grid-template-columns:210px 1fr 78px;align-items:center;gap:14px;padding:9px 0;border-bottom:1px solid var(--line);}
+  .bar-row .lbl{font-size:.85rem;color:var(--ink);}
+  .bar-row .lbl em{font-style:normal;color:var(--muted);font-size:.78rem;display:block;}
+  .track{background:#EDE9E0;height:16px;position:relative;}
+  .fill{height:100%;background:var(--navy-soft);}
+  .fill.gold{background:var(--gold);}
+  .fill.water{background:var(--water);}
+  .bar-row .val{text-align:right;font-size:.86rem;font-weight:600;color:var(--navy);}
+
+  .callout{border-left:3px solid var(--gold);background:#fff;padding:20px 24px;margin:26px 0;}
+  .callout p{margin:0;}
+  .callout p + p{margin-top:12px;}
+  .callout.risk{border-left-color:var(--warn);}
+  .callout.water{border-left-color:var(--water);}
+
+  ul.clean{padding-left:20px;max-width:72ch;}
+  ul.clean li{margin-bottom:10px;}
+
+  .timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:18px;}
+  .tl{background:var(--card);padding:20px 18px;}
+  .tl b{display:block;font-family:'Newsreader',Georgia,serif;font-size:1.3rem;color:var(--navy);font-weight:500;}
+  .tl span{display:block;font-size:.84rem;color:var(--muted);margin-top:6px;}
+  .tl i{font-style:normal;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--gold);font-weight:700;}
+
+  footer{margin-top:64px;border-top:1px solid var(--line);padding-top:26px;font-size:.83rem;color:var(--muted);}
+  footer strong{color:var(--navy);font-size:.95rem;font-family:'Newsreader',Georgia,serif;font-weight:500;}
+  .disclaim{font-size:.76rem;line-height:1.55;margin-top:18px;max-width:none;}
+
+  @media (max-width:640px){
+    .wrap{padding:0 18px 60px;}
+    .headline{padding:24px 20px;}
+    .bar-row{grid-template-columns:1fr;gap:4px;}
+    .bar-row .val{text-align:left;}
+    .spec{border-right:none;border-bottom:1px solid rgba(255,255,255,.14);flex:1 1 100%;}
+  }
+  @media print{
+    body{background:#fff;font-size:11pt;}
+    .cover{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    section{page-break-inside:avoid;}
+    table{min-width:0;font-size:9pt;}
+    .scroll{overflow:visible;}
+  }
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="wrap">
+    <p class="kicker">Comparative Market Analysis &middot; Prepared September 3, 2026</p>
+    <h1>2983 Siesta View Drive</h1>
+    <p class="sub">Villa Sol, Kissimmee, Florida 34744</p>
+    <dl class="specs">
+      <div class="spec"><dt>Bedrooms</dt><dd>5</dd></div>
+      <div class="spec"><dt>Bathrooms</dt><dd>4 <small>full</small></dd></div>
+      <div class="spec"><dt>Heated area</dt><dd>2,708 <small>sq ft</small></dd></div>
+      <div class="spec"><dt>Year built</dt><dd>2006</dd></div>
+      <div class="spec"><dt>Pool</dt><dd>None</dd></div>
+      <div class="spec"><dt>Rear exposure</dt><dd>Pond <small>water view</small></dd></div>
+    </dl>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="headline">
+    <p class="kicker" style="color:var(--gold);margin-bottom:2px;">Recommended list price</p>
+    <p class="big">$464,900</p>
+    <p class="range">Supportable range $454,900 to $474,900. That is $172 per square foot, against an active-listing average of $203 and a closed-sale average of $194.</p>
+    <div class="hl-grid">
+      <div>
+        <strong>30 to 60 days</strong>
+        <p>Expected time to a signed contract at the recommended price</p>
+      </div>
+      <div>
+        <strong>60 to 105 days</strong>
+        <p>Expected time from listing to the closing table</p>
+      </div>
+      <div>
+        <strong>$452,000 to $462,000</strong>
+        <p>Likely net sale price after normal negotiation</p>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="rule"></div>
+    <h2>The two facts that set this price</h2>
+    <p class="deck">The absence of a pool and the presence of a pond pull in opposite directions. Both are measurable in this data set.</p>
+
+    <div class="callout risk">
+      <p><strong>No pool is the larger of the two adjustments.</strong> Four of the five homes that closed in Villa Sol this year had a private pool. The one that did not, 2806 Via Largo Court, is the same home that launched at $534,000, was cut to $499,000, sat 189 days without a contract, canceled, and eventually closed at $485,000 with a $10,000 seller credit attached. Every fast sale in this neighborhood had a pool. In this submarket a screened in-ground pool is contributing somewhere between $25,000 and $35,000 to value, and just as importantly, it is contributing speed.</p>
+    </div>
+
+    <div class="callout water">
+      <p><strong>The pond view is a genuine and scarce asset.</strong> The two homes on Riachuelo Lane that back to the pond sold at 100 percent and 99.5 percent of asking price, one of them in twenty days and the other in two. They are the strongest sale-to-list results in the entire study. Only one active listing in Villa Sol currently offers a water view, and the marketing on 3129 Riachuelo leaned on exactly this feature: no rear neighbors, just sky, water, and trees.</p>
+      <p>Water recovers part of what the missing pool costs. It does not recover all of it.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="rule"></div>
+    <h2>Where the Villa Sol market stands today</h2>
+    <p class="deck">Twenty-one listings make up the study set: nine active, one pending, five closed, and six that came off the market without selling.</p>
+
+    <div class="stats">
+      <div class="stat"><b>$465,000</b><span>Median closed price, last 6 months</span></div>
+      <div class="stat"><b>$194</b><span>Average closed price per square foot</span></div>
+      <div class="stat"><b>19 days</b><span>Median days to contract for homes that sold</span></div>
+      <div class="stat"><b>143 days</b><span>Average days on market for homes still active</span></div>
+      <div class="stat"><b>98.1%</b><span>Average sale price to list price</span></div>
+      <div class="stat"><b>~8 months</b><span>Standing inventory at the current absorption rate</span></div>
+    </div>
+
+    <div class="callout">
+      <p>Villa Sol is a two-speed market. Homes priced inside the proven range go under contract in two to four weeks at close to full asking price. Homes priced above it do not sell slowly, they simply do not sell. Six of the eleven listings that concluded in the past year expired, canceled, or were withdrawn after an average of 111 days.</p>
+      <p>With roughly eight months of standing inventory, buyers have leverage and time. Price is doing almost all of the work here, and for a home without a pool it is doing even more.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="rule"></div>
+    <h2>Closed sales: what buyers have actually paid</h2>
+    <p class="deck">Five homes have closed in Villa Sol since March. Nothing has sold above $485,000, and the ceiling holds regardless of size.</p>
+
+    <div class="scroll">
+      <table>
+        <caption>Closed sales, March through July 2026. Source: Stellar MLS.</caption>
+        <thead>
+          <tr>
+            <th>Address</th><th class="num">Bd/Ba</th><th class="num">Sq ft</th><th class="num">Built</th>
+            <th>Pool</th><th>Water</th><th class="num">List</th><th class="num">Sold</th><th class="num">$/sq ft</th>
+            <th class="num">SP/LP</th><th class="num">Days to contract</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>2946 Casabella Dr</td><td class="num">4/3</td><td class="num">1,970</td><td class="num">2014</td><td>Yes</td><td>No</td><td class="num">$419,900</td><td class="num">$395,000</td><td class="num">$201</td><td class="num">94.1%</td><td class="num">18</td></tr>
+          <tr><td>2988 Marbella Dr</td><td class="num">4/2</td><td class="num">2,160</td><td class="num">2004</td><td>Yes</td><td>No</td><td class="num">$475,000</td><td class="num">$460,000</td><td class="num">$213</td><td class="num">96.8%</td><td class="num">27</td></tr>
+          <tr><td>3127 Riachuelo Ln</td><td class="num">4/3</td><td class="num">2,338</td><td class="num">2003</td><td>Yes</td><td>Pond</td><td class="num">$465,000</td><td class="num">$465,000</td><td class="num">$199</td><td class="num">100.0%</td><td class="num">20</td></tr>
+          <tr><td>3129 Riachuelo Ln</td><td class="num">4/3</td><td class="num">2,338</td><td class="num">2003</td><td>Yes</td><td>Pond</td><td class="num">$475,000</td><td class="num">$472,500</td><td class="num">$202</td><td class="num">99.5%</td><td class="num">2</td></tr>
+          <tr><td>2806 Via Largo Ct</td><td class="num">4/3</td><td class="num">3,088</td><td class="num">2008</td><td>No</td><td>No</td><td class="num">$485,000</td><td class="num">$485,000</td><td class="num">$157</td><td class="num">100.0%</td><td class="num">0</td></tr>
+          <tr class="total"><td>Average</td><td class="num">4/3</td><td class="num">2,379</td><td class="num">2006</td><td></td><td></td><td class="num">$463,980</td><td class="num">$455,500</td><td class="num">$194</td><td class="num">98.1%</td><td class="num">13</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">2806 Via Largo shows zero days because the sale was reported by a non-member office. Its full history appears in the failed-listings section below.</p>
+
+    <h3>Price per square foot falls as homes get larger</h3>
+    <p>This pattern works directly against a 2,708 square foot listing priced off neighborhood averages.</p>
+
+    <div class="bars">
+      <div class="bar-row">
+        <div class="lbl">2946 Casabella <em>1,970 sq ft, pool</em></div>
+        <div class="track"><div class="fill" style="width:78%"></div></div>
+        <div class="val">$201</div>
+      </div>
+      <div class="bar-row">
+        <div class="lbl">2988 Marbella <em>2,160 sq ft, pool</em></div>
+        <div class="track"><div class="fill" style="width:83%"></div></div>
+        <div class="val">$213</div>
+      </div>
+      <div class="bar-row">
+        <div class="lbl">3129 Riachuelo <em>2,338 sq ft, pool and pond</em></div>
+        <div class="track"><div class="fill water" style="width:79%"></div></div>
+        <div class="val">$202</div>
+      </div>
+      <div class="bar-row">
+        <div class="lbl">2983 Siesta View <em>2,708 sq ft, pond, no pool, at $464,900</em></div>
+        <div class="track"><div class="fill gold" style="width:67%"></div></div>
+        <div class="val">$172</div>
+      </div>
+      <div class="bar-row">
+        <div class="lbl">2806 Via Largo <em>3,088 sq ft, no pool</em></div>
+        <div class="track"><div class="fill" style="width:61%"></div></div>
+        <div class="val">$157</div>
+      </div>
+    </div>
+    <p class="note">Closed sale price per heated square foot. The recommended price sits between the pool comparables above it and the no-pool comparable below it, which is precisely where it belongs.</p>
+
+    <div class="callout">
+      <p>Buyers in Villa Sol are paying for the house, not for the square footage. Moving from 2,338 sq ft to 3,088 sq ft added only about $12,500 to the closed price, roughly $17 for each additional foot. At 2,708 square feet the subject sits on the flat part of that curve, so the extra size cannot carry the price upward the way a seller would hope.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="rule"></div>
+    <h2>Adjusted value indication</h2>
+    <p class="deck">Each closed sale adjusted to the subject's specifications: 2,708 square feet, five bedrooms, four full baths, built 2006, pond view, no pool.</p>
+
+    <div class="scroll">
+      <table>
+        <caption>Adjustments applied to closed sales. Positive figures mean the comparable is inferior to the subject.</caption>
+        <thead>
+          <tr>
+            <th>Comparable</th><th class="num">Closed</th><th class="num">Size</th><th class="num">Pool</th>
+            <th class="num">Water</th><th class="num">Beds and baths</th><th class="num">Age and lot</th><th class="num">Adjusted value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>3129 Riachuelo Ln<br><span class="note">2,338 sf, 4/3, pool, pond</span></td>
+            <td class="num">$472,500</td><td class="num pos">+9,300</td><td class="num neg">-30,000</td>
+            <td class="num neg">-5,000</td><td class="num pos">+12,000</td><td class="num pos">+4,000</td>
+            <td class="num"><strong>$462,800</strong></td>
+          </tr>
+          <tr>
+            <td>3127 Riachuelo Ln<br><span class="note">2,338 sf, 4/3, pool, pond</span></td>
+            <td class="num">$465,000</td><td class="num pos">+9,300</td><td class="num neg">-30,000</td>
+            <td class="num neg">-5,000</td><td class="num pos">+12,000</td><td class="num pos">+4,000</td>
+            <td class="num"><strong>$455,300</strong></td>
+          </tr>
+          <tr>
+            <td>2988 Marbella Dr<br><span class="note">2,160 sf, 4/2, pool, no water</span></td>
+            <td class="num">$460,000</td><td class="num pos">+13,700</td><td class="num neg">-30,000</td>
+            <td class="num pos">+8,000</td><td class="num pos">+18,000</td><td class="num neg">-2,000</td>
+            <td class="num"><strong>$467,700</strong></td>
+          </tr>
+          <tr>
+            <td>2806 Via Largo Ct<br><span class="note">3,088 sf, 4/3, no pool, no water</span></td>
+            <td class="num">$475,000</td><td class="num neg">-9,500</td><td class="num">0</td>
+            <td class="num pos">+8,000</td><td class="num pos">+12,000</td><td class="num neg">-3,000</td>
+            <td class="num"><strong>$482,500</strong></td>
+          </tr>
+          <tr class="subject">
+            <td>Indicated value, primary three comparables</td>
+            <td class="num" colspan="6"></td><td class="num">$455,000 to $468,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">2806 Via Largo is shown net of its $10,000 seller credit. It is given the least weight because it took 189 days and a $49,000 reduction to find a buyer, so its closed price reflects an exhausted seller rather than clean market demand.</p>
+
+    <p>The three tightly comparable sales cluster at $455,300, $462,800, and $467,700, with a midpoint near $462,000. Listing at $464,900 puts the home just above indicated value, which leaves a small and normal amount of negotiating room without pushing past what a buyer or an appraiser will support.</p>
+  </section>
+
+  <section>
+    <div class="rule"></div>
+    <h2>What the buyer sees alongside your home</h2>
+    <p class="deck">Nine homes are active in Villa Sol with an average of 143 days on market. Three of them matter a great deal to this listing.</p>
+
+    <div class="scroll">
+      <table>
+        <caption>Active competition as of September 3, 2026, with the subject inserted at the recommended price.</caption>
+        <thead>
+          <tr>
+            <th>Address</th><th class="num">Bd/Ba</th><th class="num">Sq ft</th><th>Pool</th>
+            <th class="num">List price</th><th class="num">$/sq ft</th><th class="num">Days on market</th><th>Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>2916 Casabella Dr</td><td class="num">3/2</td><td class="num">1,617</td><td>No</td><td class="num">$389,900</td><td class="num">$241</td><td class="num">20</td><td>Pond-facing porch, smallest plan</td></tr>
+          <tr><td>2943 Casabella Dr</td><td class="num">4/2</td><td class="num">1,895</td><td>No</td><td class="num">$389,900</td><td class="num">$206</td><td class="num">271</td><td>Cut from $425,000</td></tr>
+          <tr><td>2807 Via Largo Ct</td><td class="num">5/3.1</td><td class="num">3,140</td><td>No</td><td class="num">$401,000</td><td class="num">$128</td><td class="num">69</td><td><span class="tag risk">Price anchor</span> VA owned, sold as is</td></tr>
+          <tr><td>3012 Villa Preciosa Dr</td><td class="num">4/2</td><td class="num">2,074</td><td>No</td><td class="num">$434,900</td><td class="num">$210</td><td class="num">370</td><td>Cut from $456,900</td></tr>
+          <tr><td>3028 Camino Real Dr S</td><td class="num">4/2</td><td class="num">2,259</td><td>Yes</td><td class="num">$439,995</td><td class="num">$195</td><td class="num">410</td><td>Expired once, relisted</td></tr>
+          <tr class="subject"><td>2983 Siesta View Dr</td><td class="num">5/4</td><td class="num">2,708</td><td>No</td><td class="num">$464,900</td><td class="num">$172</td><td class="num">New</td><td>Recommended position, pond view</td></tr>
+          <tr><td>3044 Camino Real Dr S</td><td class="num">5/3</td><td class="num">2,264</td><td>No</td><td class="num">$469,900</td><td class="num">$208</td><td class="num">119</td><td><span class="tag watch">Closest rival</span> Paid solar, cut from $489,000</td></tr>
+          <tr><td>2986 Siesta View Dr</td><td class="num">6/4</td><td class="num">2,708</td><td>Yes</td><td class="num">$499,000</td><td class="num">$184</td><td class="num">0</td><td><span class="tag watch">Same floor plan</span> Listed today, pool and spa</td></tr>
+          <tr><td>3133 Riachuelo Ln</td><td class="num">4/3</td><td class="num">2,351</td><td>Yes</td><td class="num">$499,900</td><td class="num">$213</td><td class="num">26</td><td><span class="tag water">Pond view</span> Cut from $539,000</td></tr>
+          <tr><td>3016 Camino Real Dr S</td><td class="num">4/2</td><td class="num">2,074</td><td>Yes</td><td class="num">$510,000</td><td class="num">$246</td><td class="num">5</td><td>Heavily renovated, solar</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>3044 Camino Real is the most instructive listing on the board</h3>
+    <p>It is the only other five bedroom home without a pool in the active set. It has been on the market 119 days, was reduced from $489,000 to $469,900, and still has no contract, and it carries fully paid solar panels that the listing claims save the owner $350 to $400 a month. If a five bedroom with that kind of running-cost advantage cannot find a buyer at $469,900, the subject cannot be launched above it. Coming in at $464,900 places the home underneath it with 444 more square feet and one more full bath.</p>
+
+    <h3>2986 Siesta View Drive is the same floor plan, three doors away</h3>
+    <p>It came on the market this morning at $499,000 with identical heated square footage, one more bedroom, the same four full baths, a screened pool with an in-ground spa, and a first-floor in-law suite. It will be the first thing a buyer compares your home against.</p>
+    <p>At $464,900 the subject undercuts it by $34,100, which is a wider gap than the pool is worth and gives buyers a clear reason to look at your home first. The two listings will also help each other. Buyers who tour 2986 and decide they do not want to maintain a pool land directly on your doorstep, and the pond view is the answer to what they give up.</p>
+
+    <div class="callout risk">
+      <p>The other pressure point is 2807 Via Largo Court, a 3,140 square foot, five bedroom home owned by the Secretary of Veterans Affairs at $401,000. It is sold as is with no seller disclosures, which explains 69 days on market. It will not appraise as a true comparable, but it appears in every buyer search next to your listing and drags the perceived ceiling for large Villa Sol homes downward. Expect buyer agents to bring it up.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="rule"></div>
+    <h2>The listings that did not sell</h2>
+    <p class="deck">Six Villa Sol sellers took their homes off the market in the past year. Their asking prices show where buyer resistance begins.</p>
+
+    <div class="scroll">
+      <table>
+        <caption>Canceled, expired, and withdrawn listings.</caption>
+        <thead>
+          <tr><th>Address</th><th class="num">Sq ft</th><th class="num">Final ask</th><th class="num">$/sq ft</th><th class="num">Days on market</th><th>Outcome</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>3045 Sangria St</td><td class="num">1,848</td><td class="num">$415,000</td><td class="num">$225</td><td class="num">110</td><td>Canceled</td></tr>
+          <tr><td>2966 Siesta View Dr</td><td class="num">1,985</td><td class="num">$460,000</td><td class="num">$232</td><td class="num">49</td><td>Canceled</td></tr>
+          <tr><td>3050 Menorca Ct</td><td class="num">2,453</td><td class="num">$469,900</td><td class="num">$192</td><td class="num">97</td><td>Canceled</td></tr>
+          <tr><td>2925 Siesta View Dr</td><td class="num">2,296</td><td class="num">$484,900</td><td class="num">$211</td><td class="num">0</td><td>Withdrawn</td></tr>
+          <tr><td>2806 Via Largo Ct</td><td class="num">3,088</td><td class="num">$499,000</td><td class="num">$162</td><td class="num">189</td><td>Canceled, later closed at $485,000</td></tr>
+          <tr><td>3028 Camino Real Dr S</td><td class="num">2,259</td><td class="num">$439,995</td><td class="num">$195</td><td class="num">365</td><td>Expired, relisted, still unsold at day 410</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>The cautionary story: 2806 Via Largo Court</h3>
+    <p>This is the closest thing Villa Sol has to a controlled experiment on overpricing, and it happens to be the only no-pool sale in the set. It launched at $534,000, was reduced to $499,000, sat 189 days without a contract, canceled, and eventually closed at $485,000 with a $10,000 seller credit. The seller spent nine months and roughly $59,000 in price and credits to arrive at the number the market would have paid at the start.</p>
+    <p>Note that two doors down on the same street, 2966 Siesta View canceled after 49 days at $460,000 and 2925 Siesta View was withdrawn at $484,900 without ever accumulating a day of market time. Siesta View sellers have been testing the high $400s repeatedly and coming away empty.</p>
+  </section>
+
+  <section>
+    <div class="rule"></div>
+    <h2>Price and days on market</h2>
+    <p class="deck">This is the answer to how quickly the home sells. The projections below are adjusted downward for the absence of a pool and upward for the pond view.</p>
+
+    <div class="scroll">
+      <table>
+        <caption>Projected time to contract at each price point.</caption>
+        <thead>
+          <tr><th>List price</th><th class="num">$/sq ft</th><th>Market position</th><th class="num">Days to contract</th><th class="num">Under contract within 90 days</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>$449,900</td><td class="num">$166</td><td>Below every five bedroom in the neighborhood, priced to create urgency</td><td class="num">10 to 25</td><td class="num">90%</td></tr>
+          <tr><td>$459,900</td><td class="num">$170</td><td>At the top of indicated value, minimal negotiating room</td><td class="num">21 to 45</td><td class="num">80%</td></tr>
+          <tr class="subject"><td>$464,900</td><td class="num">$172</td><td>Recommended. Best value per foot in the active set, $5,000 under 3044 Camino Real with 444 more square feet</td><td class="num">30 to 60</td><td class="num">70%</td></tr>
+          <tr><td>$474,900</td><td class="num">$175</td><td>Above the closest no-pool rival, which has already sat 119 days</td><td class="num">60 to 105</td><td class="num">45%</td></tr>
+          <tr><td>$484,900</td><td class="num">$179</td><td>At the proven ceiling, with no pool to justify it. Two Siesta View sellers have already failed here</td><td class="num">120 to 200</td><td class="num">20%</td></tr>
+          <tr><td>$499,000 and above</td><td class="num">$184+</td><td>Tied with 2986 Siesta View, which has an extra bedroom, a pool, and a spa</td><td class="num">Unlikely to contract</td><td class="num">Under 10%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Projections are based on the observed behavior of 21 Villa Sol listings and are estimates, not guarantees. Condition, photography, and showing access will move these numbers in either direction.</p>
+
+    <h3>Why 30 to 60 days rather than the 19 day neighborhood median</h3>
+    <p>Three factors stretch the expected timeline beyond what the raw median suggests.</p>
+    <ul class="clean">
+      <li><strong>No pool.</strong> Every home that contracted in under 30 days had one. In a Kissimmee gated community marketed heavily to families and to investors, the pool is often the deciding feature, and its absence removes a slice of the buyer pool immediately.</li>
+      <li><strong>Size.</strong> The quick sales were all between 1,970 and 2,338 square feet, which is the heart of the Villa Sol buyer pool. At 2,708 square feet with five bedrooms, fewer buyers need this much house.</li>
+      <li><strong>Inventory.</strong> Nine active listings against roughly one sale a month means buyers are in no hurry.</li>
+    </ul>
+    <p>Working the other way, the pond view produced the two best sale-to-list results in the study and one two-day contract. Photographed well, it is the feature most likely to compress that 30 to 60 day window toward the low end.</p>
+
+    <h3>From launch to closing</h3>
+    <div class="timeline">
+      <div class="tl"><i>Days 1 to 14</i><b>Peak exposure</b><span>The best showing traffic a listing ever receives. Strong traffic with no offers means the price is the message.</span></div>
+      <div class="tl"><i>Days 30 to 60</i><b>Contract expected</b><span>Slightly longer than the neighborhood median, which reflects the missing pool and the size.</span></div>
+      <div class="tl"><i>22 to 47 days</i><b>Contract to closing</b><span>Recent Villa Sol closings took 22 to 47 days after contract, averaging 37.</span></div>
+      <div class="tl"><i>Day 60 to 105</i><b>Funds at closing</b><span>Realistic window from launch to keys with conventional or cash financing.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="rule"></div>
+    <h2>Strategy and things to watch</h2>
+
+    <ul class="clean">
+      <li><strong>Launch at $464,900 and hold it for 21 days.</strong> The first three weeks generate the best traffic the listing will ever see. If there are no offers by day 21 with showings coming through, reduce to $454,900. If showings themselves are thin, the price is too high and the correction needs to be larger.</li>
+      <li><strong>Sell the water, not the square footage.</strong> The pond view is the feature that produced a two-day contract and two full-price sales on Riachuelo. Photograph the rear elevation at sunrise or in late afternoon light, and lead the photo order with it rather than burying it at frame twelve. The phrase to use is no rear neighbors, because that is what buyers are actually paying for.</li>
+      <li><strong>Answer the pool question before it is asked.</strong> Buyers will compare directly against 2986 Siesta View. Get a rough contractor estimate for adding a screened pool on this lot and have it available. A buyer who learns they can add a pool for a known number, on a pond lot, at $34,100 less than the house down the street, has a decision to make instead of an objection.</li>
+      <li><strong>Position against 3044 Camino Real deliberately.</strong> It is the closest rival at $469,900 with 444 fewer square feet and one fewer full bath, and it has been sitting 119 days. Pricing $5,000 below it makes the comparison obvious to every buyer agent in the market.</li>
+      <li><strong>Confirm the CDD balance before launch.</strong> Annual CDD fees across these comparables run from $1,200 to $4,941. A high assessment cuts into a buyer's qualifying power and needs to be disclosed with the addendum attached rather than surfacing during inspection.</li>
+      <li><strong>Use a closing cost credit before cutting the price a second time.</strong> Two recent Villa Sol sellers closed with credits, including $10,000 at 2806 Via Largo. A credit moves the buyer while preserving the reported sale price for the next comparable.</li>
+      <li><strong>Market to investors as well as families.</strong> Villa Sol permits short-term rentals and several listings advertise it. Five bedrooms and four full baths on a pond lot works well for that buyer, and it widens a pool that the missing swimming pool narrows.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <strong>Rebeca Lima, Realtor&reg;</strong><br>
+    Verandah Properties LLC &middot; Central Florida<br>
+    Serving buyers, sellers, and investors across Orlando, Kissimmee, and Lake Nona.
+    <p class="disclaim">This is an opinion of value or comparative market analysis and should not be considered an appraisal. In making any decision that relies upon this work, you should know that the guidelines for development of an appraisal or analysis contained in the Uniform Standards of Professional Appraisal Practice of the Appraisal Foundation have not been followed. All data drawn from Stellar MLS as of September 3, 2026, and is deemed reliable but not guaranteed. Subject property square footage, bedroom and bath count, pool status, water view, and condition are as provided and have not been independently verified. Adjustment values are estimates of contributory value in this submarket and are not appraisal-grade. Days on market projections are based on observed local activity and are not a guarantee of performance.</p>
+  </footer>
+
+</div>
+</body>
+</html>
